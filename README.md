@@ -4,6 +4,25 @@ This is a really rough proof of concept for throttling inbound webhooks using SQ
 
 ![Inbound webhook throttling drawio(1)](https://user-images.githubusercontent.com/3620459/151139876-a572b6ee-e240-420f-88ba-4eb4f725fe45.png)
 
+This consists of:
+
+* An API Gateway endpoint that triggers a Lambda function
+* A Lambda function to push webhook payloads into SQS unaltered
+* An SQS queue
+* A Lambda function that receives SQS events (batch size 1), parses the event body, and posts it to an API endpoint
+  * This Lambda has a max concurrency of 1, which enables this method of throttling inbound API requests
+
+This will allow the API Gateway endpoint to receive spikes of inbound webhook traffic, and these requests will then be smoothed out when they are eventually posted to our internal API endpoint.
+
+## Real-world enhancements
+
+* Pull all config into the handlers via env vars set in `serverless.yml`
+* Handle HMAC verification within the API Gateway config
+* Configure API Gateway endpoint to push events directly into SQS, remove the initial Lambda function (AWS supports API Gateway pushing events directly into SQS, but I had issues getting this working via Serverless plugins)
+* Error handling
+* Observability (metrics, better logging)
+* If our internal API endpoint supported batched updates, we could increase the batch size and post multiple updates to our API at once
+
 ## Usage
 
 ### Deployment
