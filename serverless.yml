@@ -1,0 +1,28 @@
+org: adamdullenty1
+app: webhook-test-2
+service: webhook-test-2
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: ruby2.7
+  lambdaHashingVersion: 20201221
+
+functions:
+  processRequest:
+    handler: handler.process_webhook_request
+    events:
+      - http:
+          path: /
+          method: post
+
+constructs:
+  webhookQueue:
+    type: queue
+    worker:
+      handler: handler.process_queue_event
+      reservedConcurrency: 1
+
+plugins:
+  - serverless-lift
+  - serverless-ruby-layer

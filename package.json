@@ -1,0 +1,11 @@
+{
+  "name": "webhook-test-2",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless": "^2.72.2",
+    "serverless-lift": "^1.11.0",
+    "serverless-ruby-layer": "^1.5.0"
+  }
+}
