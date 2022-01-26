@@ -2,6 +2,8 @@
 
 This is a really rough proof of concept for throttling inbound webhooks using SQS and reserved concurrency.
 
+![Inbound webhook throttling drawio(1)](https://user-images.githubusercontent.com/3620459/151139876-a572b6ee-e240-420f-88ba-4eb4f725fe45.png)
+
 ## Usage
 
 ### Deployment
