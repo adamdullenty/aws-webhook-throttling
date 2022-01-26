@@ -29,7 +29,7 @@ This will allow the API Gateway endpoint to receive spikes of inbound webhook tr
 
 In order to deploy this, you will need to run the following command:
 
-```
+```bash
 $ serverless deploy
 ```
 
@@ -56,13 +56,15 @@ Service Information
 
 ### Invocation
 
-After successful deployment, you can invoke the deployed function by using the following command:
+After successful deployment, you can invoke the deployed function by posting the below example payload to the deployed API Gateway endpoint URL:
 
-```bash
-serverless invoke --function processRequest --data '{"test": "hello!"}'
+```json
+{
+  "test": "hello!"
+}
 ```
 
-Which should result in a response similar to the following:
+You should receive a response similar to the following:
 
 ```json
 {
@@ -88,4 +90,12 @@ headers:
 host: "enmw2ww7ngty8tf.m.pipedream.net"
 user-agent: "Ruby"
 method: "POST"
+```
+
+### Teardown
+
+You can remove all of the deployed infrastructure by running the following command:
+
+```bash
+$ serverless remove
 ```
