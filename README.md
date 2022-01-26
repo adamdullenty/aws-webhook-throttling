@@ -55,10 +55,16 @@ Which should result in a response similar to the following:
 }
 ```
 
-### Local development
+If you have configured an API endpoint to receive these requests via REQUEST_BIN_URL (see handler.rb), this endpoint should receive a request containing the parsed value from the "test" object:
 
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function processRequest --data '{"test": "hello!"}'
+```
+body:
+  original_event: "{\"test\": \"hello!\"}"
+  parsed_test_value: "hello!"
+headers:
+  accept: "*/*"
+  content-type: "application/json"
+host: "enmw2ww7ngty8tf.m.pipedream.net"
+user-agent: "Ruby"
+method: "POST"
 ```
