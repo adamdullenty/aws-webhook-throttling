@@ -56,7 +56,7 @@ Service Information
 
 ### Invocation
 
-After successful deployment, you can invoke the deployed function by posting the below example payload to the deployed API Gateway endpoint URL:
+After successful deployment, you can invoke the deployed function by posting the below example payload to the deployed API Gateway endpoint URL with a content type of `application/json`:
 
 ```json
 {
