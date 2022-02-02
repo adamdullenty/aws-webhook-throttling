@@ -19,7 +19,7 @@ This will allow the API Gateway endpoint to receive spikes of inbound webhook tr
 * Pull all config into the handlers via env vars set in `serverless.yml`
 * Handle HMAC verification within the API Gateway config
 * Configure API Gateway endpoint to push events directly into SQS, remove the initial Lambda function (AWS supports API Gateway pushing events directly into SQS, but I had issues getting this working via Serverless plugins)
-* Error handling
+* Error handling, send messages to a dead letter queue where appropriate
 * Observability (metrics, better logging)
 * If our internal API endpoint supported batched updates, we could increase the batch size and post multiple updates to our API at once
 
